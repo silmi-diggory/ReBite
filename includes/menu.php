@@ -1,19 +1,25 @@
 <?php
-$role  = $_SESSION['role'] ?? null;
-$login = isset($_SESSION['id_user']);
+if (session_status() === PHP_SESSION_NONE) session_start();
+
+$role    = $_SESSION['role'] ?? null;
+$login   = isset($_SESSION['id_user']);
+$beranda = function_exists('halaman_beranda') ? halaman_beranda($role) : 'auth/login.php';
 ?>
 <nav>
-  <a href="<?= BASE_URL ?>index.php" class="nav-brand">
+  <a href="<?= BASE_URL . $beranda ?>" class="nav-brand">
     <img src="<?= BASE_URL ?>assets/img/logo.png" alt="ReBite" class="logo">
   </a>
 
-  <a href="<?= BASE_URL ?>penerima/katalog.php">Katalog</a>
+  <?php if ($login): ?>
+    <a href="<?= BASE_URL ?>katalog.php">Katalog</a>
+  <?php endif; ?>
 
   <?php if ($role === 'penyedia'): ?>
     <a href="<?= BASE_URL ?>penyedia/makanan_saya.php">Makanan Saya</a>
   <?php endif; ?>
 
   <?php if ($role === 'admin'): ?>
+    <a href="<?= BASE_URL ?>dashboard.php">Dashboard</a>
     <a href="<?= BASE_URL ?>admin/verifikasi_penyedia.php">Verifikasi</a>
     <a href="<?= BASE_URL ?>admin/kategori.php">Kategori</a>
     <a href="<?= BASE_URL ?>admin/kelola_pengguna.php">Pengguna</a>
