@@ -51,7 +51,7 @@ Kaitan dengan SDGs:
 ## Struktur folder
 
 ```
-ReBite/
+rebite/
 ├── index.php
 ├── dashboard.php
 ├── katalog.php
@@ -80,14 +80,16 @@ Langkah:
 
    ```bash
    cd C:\xampp\htdocs
-   git clone https://github.com/silmi-diggory/ReBite.git
+   git clone https://github.com/USERNAME/rebite.git
    ```
+
+   Ganti `USERNAME` dengan nama akun GitHub pemilik repo. Pastikan nama foldernya `rebite`.
 
 2. **Jalankan XAMPP.** Buka XAMPP Control Panel, lalu klik **Start** pada **Apache** dan **MySQL**.
 
-3. **Buat database.** Buka `http://localhost/phpmyadmin`, klik **New**, lalu buat database bernama `ReBite` dengan collation `utf8mb4_general_ci`.
+3. **Buat database.** Buka `http://localhost/phpmyadmin`, klik **New**, lalu buat database bernama `rebite` dengan collation `utf8mb4_general_ci`.
 
-4. **Impor struktur dan data contoh.** Pilih database `ReBite`, buka tab **Import**, pilih file `database/database.sql`, lalu klik **Go**.
+4. **Impor struktur dan data contoh.** Pilih database `rebite`, buka tab **Import**, pilih file `database/database.sql`, lalu klik **Go**.
 
 5. **Cek konfigurasi koneksi.** Buka `includes/koneksi.php` dan pastikan isinya sesuai pengaturan XAMPP kamu. Pengaturan bawaan XAMPP adalah:
 
@@ -96,7 +98,7 @@ Langkah:
    | Server | `localhost` |
    | Username | `root` |
    | Password | (kosong) |
-   | Nama database | `ReBite` |
+   | Nama database | `rebite` |
 
 ## Cara menjalankan
 
@@ -104,18 +106,28 @@ Langkah:
 2. Buka browser dan akses:
 
    ```
-   http://localhost/ReBite/
+   http://localhost/rebite/
    ```
 
 3. Daftar akun baru atau login memakai akun contoh di bawah, lalu mulai gunakan aplikasi sesuai peran.
 
 ### Akun contoh
 
-| Peran | Username / email | Password |
+Semua akun contoh memakai password `rebite123`.
+
+| Peran | Nama | Email |
 | --- | --- | --- |
-| Admin | (diisi setelah data contoh dibuat) | (diisi) |
-| Penyedia | (diisi) | (diisi) |
-| Penerima | (diisi) | (diisi) |
+| Admin | Kakashi Hatake | `admin@rebite.test` |
+| Penyedia | Warung Ichiraku | `ichiraku@rebite.test` |
+| Penyedia | Katering Totoro | `totoro@rebite.test` |
+| Penyedia | Kantin Fakultas Teknik | `kantin.ft@rebite.test` |
+| Penyedia (menunggu verifikasi admin) | Bakery Kiki | `kiki@rebite.test` |
+| Penerima | Naruto Uzumaki | `naruto@rebite.test` |
+| Penerima | Mikasa Ackerman | `mikasa@rebite.test` |
+| Penerima | Tanjiro Kamado | `tanjiro@rebite.test` |
+| Penerima | Hinata Hyuga | `hinata@rebite.test` |
+| Penerima | Zoro Roronoa | `zoro@rebite.test` |
+| Penerima | Nezuko Kamado | `nezuko@rebite.test` |
 
 ### Alur singkat untuk mencoba
 
@@ -131,7 +143,7 @@ Langkah:
 | --- | --- |
 | Apache tidak bisa start | Port 80 dipakai aplikasi lain. Tutup aplikasi tersebut atau ubah port di XAMPP |
 | MySQL tidak bisa start | Port 3306 dipakai layanan MySQL lain. Hentikan layanan itu terlebih dahulu |
-| Muncul tulisan "Gagal koneksi" | Periksa `includes/koneksi.php`, pastikan MySQL berjalan dan database `ReBite` sudah dibuat |
+| Muncul tulisan "Gagal koneksi" | Periksa `includes/koneksi.php`, pastikan MySQL berjalan dan database `rebite` sudah dibuat |
 | Halaman tidak ditemukan (404) | Pastikan nama folder di `htdocs` sama dengan alamat yang dibuka |
 | Halaman kosong | Aktifkan tampilan error PHP atau lihat log di `C:\xampp\apache\logs\error.log` |
 
@@ -139,8 +151,8 @@ Langkah:
 
 | Nama | Peran |
 | --- | --- |
-| (Muhammad Doli Muda Siregar) | Akun, pengguna, session, hak akses, database |
+| (Hanifah Silmi Fajri) | Akun, pengguna, session, hak akses, database |
 | (Mutiara Gita Ramadhanti) | Makanan, katalog, admin, tampilan bersama |
-| (Hanifah Silmi Fajri) | Klaim, riwayat, dashboard |
+| (Muhammad Doli Muda Siregar) | Klaim, riwayat, dashboard |
 
 Dibuat untuk Responsi 2 Praktikum Pemrograman Web I, Informatika Universitas Jenderal Soedirman, 2026.
