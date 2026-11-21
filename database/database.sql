@@ -62,6 +62,8 @@ CREATE TABLE `kategori` (
 -- ------------------------------------------------------------
 -- Tabel makanan (makanan sisa yang dibagikan penyedia)
 -- status : tersedia, habis, kedaluwarsa
+-- foto   : nama file saja (bukan path), disimpan di assets/img/makanan/
+--          NULL kalau penyedia tidak mengunggah foto
 -- ------------------------------------------------------------
 CREATE TABLE `makanan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -69,6 +71,7 @@ CREATE TABLE `makanan` (
   `id_kategori` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `deskripsi` text DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `porsi_total` int(11) NOT NULL,
   `porsi_tersisa` int(11) NOT NULL,
   `lokasi` varchar(255) NOT NULL,
@@ -128,6 +131,7 @@ INSERT INTO `kategori` (`id`, `nama`) VALUES
 
 -- Makanan sisa (batas_ambil dibuat relatif terhadap waktu import
 -- supaya data contoh selalu tampil sebagai "tersedia" saat demo)
+-- Kolom foto tidak diisi, jadi bernilai NULL untuk semua data contoh
 INSERT INTO `makanan` (`id`, `id_penyedia`, `id_kategori`, `nama`, `deskripsi`, `porsi_total`, `porsi_tersisa`, `lokasi`, `batas_ambil`, `status`) VALUES
 (1, 3, 1, 'Nasi Kotak Ayam Goreng',        'Kelebihan pesanan acara. Dimasak pagi ini, lauk ayam goreng, sambal, dan lalapan.',          20, 16, 'Jl. Dr. Suparno, Purwokerto Utara',      DATE_ADD(NOW(), INTERVAL 5 HOUR),  'tersedia'),
 (2, 2, 1, 'Soto Ayam Porsi Siang',         'Soto ayam kuah hangat, sisa jualan siang. Sebaiknya segera dikonsumsi.',                      10,  9, 'Jl. Gerilya, Purwokerto Selatan',        DATE_ADD(NOW(), INTERVAL 3 HOUR),  'tersedia'),
