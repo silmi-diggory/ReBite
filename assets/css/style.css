@@ -1,0 +1,164 @@
+:root {
+  --color-brand-50: #f0f9f3;
+  --color-brand-100: #dcf1e3;
+  --color-brand-300: #8ccda6;
+  --color-brand-600: #1e7746;
+  --color-brand-700: #106535;
+  --color-brand-800: #0d4f2a;
+  --color-brand-900: #0b4023;
+
+  --color-ink-50: #f7f7f6;
+  --color-ink-200: #dcdcd8;
+  --color-ink-600: #5c5c56;
+  --color-ink-900: #1c1c1a;
+
+  --color-surface: #fff;
+  --color-surface-muted: var(--color-ink-50);
+
+  /* Warna aksen (tidak ada di palet hijau) */
+  --oranye: #f57c00;
+  --merah: #c62828;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  color: var(--color-ink-900);
+  background: var(--color-surface-muted);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 { color: var(--color-brand-800); }
+
+.container {
+  flex: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Menu */
+nav {
+  background: var(--color-brand-800);
+  padding: 10px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+nav a { color: #fff; text-decoration: none; font-weight: 600; }
+nav a:hover { text-decoration: underline; }
+.nav-brand { display: flex; align-items: center; margin-right: 8px; }
+.logo { height: 36px; width: auto; display: block; }
+.nav-kanan { margin-left: auto; }
+
+/* Footer */
+footer {
+  background: var(--color-ink-200);
+  color: var(--color-ink-600);
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+}
+
+/* Tombol */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-brand-600);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn:hover { background: var(--color-brand-700); }
+.btn-warning { background: var(--oranye); }
+.btn-warning:hover { background: var(--oranye); opacity: .9; }
+.btn-danger { background: var(--merah); }
+.btn-danger:hover { background: var(--merah); opacity: .9; }
+
+/* Kartu dan grid */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-ink-200);
+  border-radius: 10px;
+  padding: 16px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* Form (berlaku untuk <form> maupun elemen berkelas .form) */
+.form-wrap {
+  max-width: 420px;
+  margin: 24px auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-ink-200);
+  border-radius: 10px;
+  padding: 24px;
+}
+.form-wrap h2 { margin-top: 0; }
+
+form label, .form label {
+  display: block;
+  margin: 12px 0 4px;
+  font-weight: 600;
+}
+form input, form select, form textarea,
+.form input, .form select, .form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-ink-200);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--color-surface);
+}
+form input:focus, form select:focus, form textarea:focus,
+.form input:focus, .form select:focus, .form textarea:focus {
+  outline: 2px solid var(--color-brand-300);
+  border-color: var(--color-brand-600);
+}
+
+/* Tabel */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+}
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid var(--color-ink-200);
+  text-align: left;
+}
+th { background: var(--color-brand-100); color: var(--color-brand-900); }
+.tabel-profil { max-width: 520px; }
+.tabel-profil th { width: 35%; }
+
+/* Label status */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: var(--color-ink-200);
+  color: var(--color-ink-600);
+}
+.badge-ok { background: var(--color-brand-100); color: var(--color-brand-700); }
+.badge-wait { background: #fff3e0; color: var(--oranye); }
+
+/* Pesan notifikasi (alert-sukses dan alert-success sama-sama dipakai) */
+.alert { padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+.alert-sukses, .alert-success {
+  background: var(--color-brand-100);
+  color: var(--color-brand-700);
+}
+.alert-error { background: #ffebee; color: var(--merah); }
