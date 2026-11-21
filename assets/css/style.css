@@ -45,7 +45,7 @@ h1, h2, h3 { color: var(--color-brand-800); }
 /* Menu */
 nav {
   background: var(--color-brand-800);
-  padding: 10px 16px;
+  padding: 6px 16px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -54,7 +54,7 @@ nav {
 nav a { color: #fff; text-decoration: none; font-weight: 600; }
 nav a:hover { text-decoration: underline; }
 .nav-brand { display: flex; align-items: center; margin-right: 8px; }
-.logo { height: 36px; width: auto; display: block; }
+.logo { height: 50px; width: auto; display: block; }
 .nav-kanan { margin-left: auto; }
 
 /* Footer */
