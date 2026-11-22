@@ -14,13 +14,12 @@ $koneksi = mysqli_connect($server, $username, $password, $database)
 mysqli_set_charset($koneksi, "utf8mb4");
 
 if (!defined('BASE_URL')) {
-    $akar     = str_replace('\\', '/', (string) realpath(__DIR__ . '/..'));
-    $docroot  = isset($_SERVER['DOCUMENT_ROOT'])
-        ? str_replace('\\', '/', (string) realpath($_SERVER['DOCUMENT_ROOT']))
-        : '';
-    $jalur    = ($docroot !== '' && stripos($akar, $docroot) === 0)
-        ? substr($akar, strlen($docroot))
-        : '';
+    $akar    = str_replace('\\', '/', (string) realpath(__DIR__ . '/..'));
+    $docroot = str_replace('\\', '/', (string) realpath($_SERVER['DOCUMENT_ROOT']));
+    $jalur   = '';
+    if ($docroot != '' && stripos($akar, $docroot) === 0) {
+        $jalur = substr($akar, strlen($docroot));
+    }
     define('BASE_URL', rtrim($jalur, '/') . '/');
 }
 
@@ -49,7 +48,11 @@ function e($teks)
     return htmlspecialchars((string) $teks, ENT_QUOTES, 'UTF-8');
 }
 
-if (session_status() === PHP_SESSION_NONE) {
+/* ============================================================
+   Session dan hak akses
+   ============================================================ */
+
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -60,29 +63,33 @@ function sudah_login()
 
 function user_login()
 {
-    return [
-        'id'   => $_SESSION['id_user'] ?? null,
-        'nama' => $_SESSION['nama'] ?? null,
-        'role' => $_SESSION['role'] ?? null,
-    ];
+    $data = array('id' => null, 'nama' => null, 'role' => null);
+    if (isset($_SESSION['id_user'])) {
+        $data['id']   = $_SESSION['id_user'];
+        $data['nama'] = $_SESSION['nama'];
+        $data['role'] = $_SESSION['role'];
+    }
+    return $data;
 }
 
 function set_flash($tipe, $pesan)
 {
-    $_SESSION['flash'] = ['tipe' => $tipe, 'pesan' => $pesan];
+    $_SESSION['flash_tipe']  = $tipe;
+    $_SESSION['flash_pesan'] = $pesan;
 }
 
 function tampil_flash()
 {
-    if (empty($_SESSION['flash'])) {
-        return '';
+    $hasil = '';
+    if (isset($_SESSION['flash_pesan'])) {
+        $hasil = '<div class="alert alert-' . e($_SESSION['flash_tipe']) . '">'
+               . e($_SESSION['flash_pesan']) . '</div>';
+        unset($_SESSION['flash_tipe']);
+        unset($_SESSION['flash_pesan']);
     }
-    $f = $_SESSION['flash'];
-    unset($_SESSION['flash']);
-    return '<div class="alert alert-' . e($f['tipe']) . '">' . e($f['pesan']) . '</div>';
+    return $hasil;
 }
 
-// Halaman wajib login (semua role)
 function wajib_login()
 {
     if (!sudah_login()) {
@@ -91,21 +98,19 @@ function wajib_login()
     }
 }
 
-// Halaman khusus role tertentu. Contoh: wajib_role(['admin']);
-//                                      wajib_role(['penyedia', 'admin']);
-function wajib_role(array $role_diizinkan)
+function wajib_role($role_diizinkan)
 {
     wajib_login();
-    if (!in_array($_SESSION['role'], $role_diizinkan, true)) {
+    if (!in_array($_SESSION['role'], $role_diizinkan)) {
         set_flash('error', 'Anda tidak memiliki akses ke halaman tersebut.');
         redirect(halaman_beranda($_SESSION['role']));
     }
 }
 
-// Halaman khusus tamu (login/register). Kalau sudah login, arahkan ke beranda.
 function wajib_tamu()
 {
     if (sudah_login()) {
         redirect(halaman_beranda($_SESSION['role']));
     }
 }
+?>

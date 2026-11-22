@@ -1,32 +1,29 @@
 <?php
-require_once __DIR__ . '/../includes/koneksi.php';
+include_once "../includes/koneksi.php";
 wajib_tamu();
 
-$galat = '';
-$email = '';
+$error = "";
+$email = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email    = strtolower(trim($_POST['email'] ?? ''));
-    $password = $_POST['password'] ?? '';
+if (isset($_POST['submit'])) {
+    $email    = strtolower(trim($_POST['email']));
+    $password = $_POST['password'];
 
-    if ($email === '' || $password === '') {
-        $galat = 'Email dan password wajib diisi.';
+    if ($email == "" || $password == "") {
+        $error = "Email dan password wajib diisi.";
     } else {
-        $stmt = mysqli_prepare($koneksi,
-            'SELECT id, nama, password, role, status_verifikasi FROM users WHERE email = ?');
-        mysqli_stmt_bind_param($stmt, 's', $email);
-        mysqli_stmt_execute($stmt);
-        $hasil = mysqli_stmt_get_result($stmt);
-        $user  = mysqli_fetch_assoc($hasil);
-        mysqli_stmt_close($stmt);
+        $email_db = mysqli_real_escape_string($koneksi, $email);
+        $hasil = mysqli_query($koneksi,
+            "SELECT id, nama, password, role, status_verifikasi FROM users WHERE email='$email_db'");
+        $user = mysqli_fetch_assoc($hasil);
 
         if (!$user || !password_verify($password, $user['password'])) {
-            $galat = 'Email atau password salah.';
-        } elseif ($user['status_verifikasi'] !== 'terverifikasi') {
-            $galat = 'Akun Anda masih menunggu verifikasi admin.';
+            $error = "Email atau password salah.";
+        } elseif ($user['status_verifikasi'] != "terverifikasi") {
+            $error = "Akun Anda masih menunggu verifikasi admin.";
         } else {
             session_regenerate_id(true);
-            $_SESSION['id_user'] = (int) $user['id'];
+            $_SESSION['id_user'] = $user['id'];
             $_SESSION['nama']    = $user['nama'];
             $_SESSION['role']    = $user['role'];
             redirect(halaman_beranda($user['role']));
@@ -34,25 +31,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$judul_halaman = 'Login';
-include __DIR__ . '/../includes/header.php';
+$judul_halaman = "Login";
+include "../includes/header.php";
 ?>
 <section class="form-wrap">
-    <h1>Login</h1>
+    <h2>Login</h2>
     <?= tampil_flash() ?>
-    <?php if ($galat): ?>
-        <div class="alert alert-error"><?= e($galat) ?></div>
-    <?php endif; ?>
 
-    <form method="post" class="form">
+    <?php if ($error != "") { ?>
+        <div class="alert alert-error"><?= e($error) ?></div>
+    <?php } ?>
+
+    <form method="post" class="form" onSubmit="return cek()">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="<?= e($email) ?>" required>
+        <input type="email" id="email" name="email" value="<?= e($email) ?>">
 
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password">
 
-        <button type="submit" class="btn">Masuk</button>
+        <br><br>
+        <input type="submit" name="submit" value="Masuk" class="btn">
         <p>Belum punya akun? <a href="<?= BASE_URL ?>auth/register.php">Daftar</a></p>
     </form>
 </section>
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+
+<script>
+    function cek() {
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+
+        if (email.value == "") {
+            alert("Email harus diisi!");
+            email.focus();
+            return false;
+        }
+        if (password.value == "") {
+            alert("Password harus diisi!");
+            password.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<?php include "../includes/footer.php"; ?>

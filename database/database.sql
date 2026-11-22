@@ -144,7 +144,7 @@ INSERT INTO `makanan` (`id`, `id_penyedia`, `id_kategori`, `nama`, `deskripsi`, 
 
 -- Klaim (porsi_tersisa di tabel makanan sudah disesuaikan dengan klaim di bawah)
 INSERT INTO `klaim` (`id`, `id_makanan`, `id_penerima`, `jumlah_porsi`, `status`, `tanggal_klaim`) VALUES
-(1, 1, 6,  2, 'diambil',    DATE_SUB(NOW(), INTERVAL 3 HOUR)),
+(1, 1, 6,  2, 'diambil',    DATE_SUB(NOW(), INTERVAL 3 HOUR)), 
 (2, 1, 7,  2, 'dipesan',    DATE_SUB(NOW(), INTERVAL 2 HOUR)),
 (3, 2, 8,  1, 'diambil',    DATE_SUB(NOW(), INTERVAL 90 MINUTE)),
 (4, 3, 9,  2, 'dibatalkan', DATE_SUB(NOW(), INTERVAL 1 HOUR)),

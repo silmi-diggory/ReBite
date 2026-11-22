@@ -44,7 +44,7 @@ Kaitan dengan SDGs:
 ## Teknologi
 
 - PHP (native) dan MySQL
-- HTML, CSS, dan JavaScript
+- HTML, CSS
 - XAMPP (Apache dan MySQL) sebagai server lokal
 - Git dan GitHub untuk kolaborasi
 
@@ -80,18 +80,12 @@ Langkah:
 
    ```bash
    cd C:\xampp\htdocs
-   git clone https://github.com/USERNAME/rebite.git
+   git clone https://github.com/silmi-diggory/ReBite.git
    ```
-
-   Ganti `USERNAME` dengan nama akun GitHub pemilik repo. Pastikan nama foldernya `rebite`.
 
 2. **Jalankan XAMPP.** Buka XAMPP Control Panel, lalu klik **Start** pada **Apache** dan **MySQL**.
 
-3. **Buat database.** Buka `http://localhost/phpmyadmin`, klik **New**, lalu buat database bernama `rebite` dengan collation `utf8mb4_general_ci`.
-
-4. **Impor struktur dan data contoh.** Pilih database `rebite`, buka tab **Import**, pilih file `database/database.sql`, lalu klik **Go**.
-
-5. **Cek konfigurasi koneksi.** Buka `includes/koneksi.php` dan pastikan isinya sesuai pengaturan XAMPP kamu. Pengaturan bawaan XAMPP adalah:
+3. **Cek konfigurasi koneksi.** Buka `includes/koneksi.php` dan pastikan isinya sesuai pengaturan XAMPP kamu. Pengaturan bawaan XAMPP adalah:
 
    | Pengaturan | Nilai |
    | --- | --- |
@@ -151,8 +145,8 @@ Semua akun contoh memakai password `rebite123`.
 
 | Nama | Peran |
 | --- | --- |
-| (Hanifah Silmi Fajri) | Akun, pengguna, session, hak akses, database |
-| (Mutiara Gita Ramadhanti) | Makanan, katalog, admin, tampilan bersama |
-| (Muhammad Doli Muda Siregar) | Klaim, riwayat, dashboard |
+| Hanifah Silmi Fajri | Akun, pengguna, session, hak akses, database |
+| Mutiara Gita Ramadhanti | Makanan, katalog, admin, tampilan bersama |
+| Muhammad Doli Muda Siregar | Klaim, riwayat, dashboard |
 
 Dibuat untuk Responsi 2 Praktikum Pemrograman Web I, Informatika Universitas Jenderal Soedirman, 2026.
