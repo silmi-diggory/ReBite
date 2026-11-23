@@ -15,6 +15,11 @@ Tujuan:
 - Membantu pemenuhan kebutuhan pangan.
 - Mencatat dampak dalam jumlah porsi makanan yang diselamatkan.
 
+Manfaat:
+- Bagi penyedia: sisa makanan tersalurkan, bukan dibuang.
+- Bagi penerima: akses makanan layak secara gratis dan mudah dicari.
+- Bagi lingkungan: berkurangnya sampah makanan.
+
 Kaitan dengan SDGs:
 - **SDG 12** Konsumsi dan Produksi yang Bertanggung Jawab (utama)
 - **SDG 2** Tanpa Kelaparan (pendukung)
@@ -44,7 +49,7 @@ Kaitan dengan SDGs:
 ## Teknologi
 
 - PHP (native) dan MySQL
-- HTML, CSS
+- HTML, CSS, JavaScript
 - XAMPP (Apache dan MySQL) sebagai server lokal
 - Git dan GitHub untuk kolaborasi
 
@@ -85,7 +90,9 @@ Langkah:
 
 2. **Jalankan XAMPP.** Buka XAMPP Control Panel, lalu klik **Start** pada **Apache** dan **MySQL**.
 
-3. **Cek konfigurasi koneksi.** Buka `includes/koneksi.php` dan pastikan isinya sesuai pengaturan XAMPP kamu. Pengaturan bawaan XAMPP adalah:
+3. **Buat database.** Buka `http://localhost/phpmyadmin`, klik tab **Import**, pilih file `database/database.sql` dari folder proyek, lalu klik **Import**. File ini otomatis membuat database `rebite`, semua tabel, dan data contoh.
+
+4. **Cek konfigurasi koneksi.** Buka `includes/koneksi.php` dan pastikan isinya sesuai pengaturan XAMPP kamu. Pengaturan bawaan XAMPP adalah:
 
    | Pengaturan | Nilai |
    | --- | --- |
@@ -122,6 +129,8 @@ Semua akun contoh memakai password `rebite123`.
 | Penerima | Hinata Hyuga | `hinata@rebite.test` |
 | Penerima | Zoro Roronoa | `zoro@rebite.test` |
 | Penerima | Nezuko Kamado | `nezuko@rebite.test` |
+
+Foto makanan yang diunggah penyedia disimpan di `assets/img/makanan/` (folder dibuat otomatis, tidak ikut Git).
 
 ### Alur singkat untuk mencoba
 

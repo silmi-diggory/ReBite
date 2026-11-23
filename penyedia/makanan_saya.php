@@ -30,9 +30,7 @@ include __DIR__ . '/../includes/header.php';
   <h2 style="margin:0;">Makanan Saya</h2>
   <div>
     <a href="<?= BASE_URL ?>penyedia/makanan_tambah.php" class="btn">+ Posting Makanan</a>
-    <?php if (file_exists(__DIR__ . '/../riwayat_berbagi.php')): ?>
-      <a href="<?= BASE_URL ?>riwayat_berbagi.php" class="btn btn-warning">Riwayat Berbagi</a>
-    <?php endif; ?>
+    <a href="<?= BASE_URL ?>penyedia/riwayat_berbagi.php" class="btn btn-warning">Riwayat Berbagi</a>
   </div>
 </div>
 

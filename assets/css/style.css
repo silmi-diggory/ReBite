@@ -162,3 +162,37 @@ th { background: var(--color-brand-100); color: var(--color-brand-900); }
   color: var(--color-brand-700);
 }
 .alert-error { background: #ffebee; color: var(--merah); }
+/* Label status makanan dan klaim */
+.badge-tersedia, .badge-diambil { background: var(--color-brand-100); color: var(--color-brand-700); }
+.badge-dipesan { background: #fff3e0; color: var(--oranye); }
+.badge-habis, .badge-dibatalkan, .badge-kedaluwarsa { background: #ffebee; color: var(--merah); }
+
+/* Tabel yang bisa digeser di layar kecil */
+.tabel-scroll { overflow-x: auto; margin-bottom: 16px; }
+.tabel-scroll form { margin: 0; }
+.tabel-scroll input[type="submit"] { width: auto; }
+
+/* Dashboard dampak */
+.kartu-statistik {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+.kartu {
+  background: var(--color-surface);
+  border: 1px solid var(--color-ink-200);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.kartu-utama { background: var(--color-brand-600); border-color: var(--color-brand-600); color: #fff; }
+.kartu .angka { font-size: 32px; font-weight: 700; line-height: 1.1; }
+.kartu .keterangan { font-size: 13px; opacity: .85; }
+.baris-bar { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.label-bar { width: 140px; flex-shrink: 0; font-size: 14px; }
+.bar { flex: 1; height: 14px; background: var(--color-ink-200); border-radius: 7px; overflow: hidden; }
+.bar-isi { height: 100%; background: var(--color-brand-600); border-radius: 7px; }
+.nilai-bar { width: 40px; text-align: right; font-weight: 600; }

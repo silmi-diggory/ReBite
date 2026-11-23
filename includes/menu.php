@@ -16,6 +16,15 @@ $beranda = function_exists('halaman_beranda') ? halaman_beranda($role) : 'auth/l
 
   <?php if ($role === 'penyedia'): ?>
     <a href="<?= BASE_URL ?>penyedia/makanan_saya.php">Makanan Saya</a>
+    <a href="<?= BASE_URL ?>penyedia/riwayat_berbagi.php">Riwayat Berbagi</a>
+  <?php endif; ?>
+
+  <?php if ($role === 'penerima'): ?>
+    <a href="<?= BASE_URL ?>penerima/riwayat_klaim.php">Riwayat Klaim</a>
+  <?php endif; ?>
+
+  <?php if ($login && $role !== 'admin'): ?>
+    <a href="<?= BASE_URL ?>dashboard.php">Dashboard</a>
   <?php endif; ?>
 
   <?php if ($role === 'admin'): ?>

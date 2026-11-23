@@ -54,8 +54,8 @@ include __DIR__ . '/includes/header.php';
 
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
   <h2 style="margin:0;">Katalog Makanan Tersedia</h2>
-  <?php if ($role === 'penerima' && file_exists(__DIR__ . '/riwayat_klaim.php')): ?>
-    <a href="<?= BASE_URL ?>riwayat_klaim.php" class="btn btn-warning">Riwayat Klaim Saya</a>
+  <?php if ($role === 'penerima'): ?>
+    <a href="<?= BASE_URL ?>penerima/riwayat_klaim.php" class="btn btn-warning">Riwayat Klaim Saya</a>
   <?php endif; ?>
 </div>
 
@@ -113,12 +113,7 @@ include __DIR__ . '/includes/header.php';
         </div>
 
         <?php if ($role === 'penerima'): ?>
-          <form method="post" action="<?= BASE_URL ?>klaim.php" style="display:flex; gap:8px; align-items:center;">
-            <input type="hidden" name="id_makanan" value="<?= (int) $row['id'] ?>">
-            <input type="number" name="jumlah_porsi" value="1" min="1" max="<?= (int) $row['porsi_tersisa'] ?>"
-                   required style="width:76px;" title="Jumlah porsi">
-            <button type="submit" class="btn" style="flex:1;">Klaim</button>
-          </form>
+          <a href="<?= BASE_URL ?>penerima/klaim.php?id=<?= (int) $row['id'] ?>" class="btn" style="text-align:center;">Klaim</a>
         <?php endif; ?>
       </div>
     <?php endwhile; ?>
